@@ -1,4 +1,4 @@
-package com.bigdata.hadoop.mapreduce.mapper.driver;
+package com.bigdata.hadoop.mapreduce.driver;
 
 import com.bigdata.hadoop.mapreduce.mapper.LogETLMapper;
 import org.apache.hadoop.conf.Configuration;
