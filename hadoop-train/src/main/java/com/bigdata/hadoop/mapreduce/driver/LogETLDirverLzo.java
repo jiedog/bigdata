@@ -1,20 +1,15 @@
 package com.bigdata.hadoop.mapreduce.driver;
 
 
-import com.bigdata.hadoop.mapreduce.format.MyInputFormat;
 import com.bigdata.hadoop.mapreduce.mapper.LogETLMapper;
-import io.netty.handler.codec.compression.ZlibEncoder;
+import com.hadoop.compression.lzo.LzopCodec;
+import com.hadoop.mapreduce.LzoTextInputFormat;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.compress.BZip2Codec;
-import org.apache.hadoop.io.compress.GzipCodec;
-import org.apache.hadoop.io.compress.Lz4Codec;
-import org.apache.hadoop.io.compress.SnappyCodec;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +17,8 @@ import org.slf4j.LoggerFactory;
 /**
  * @Author cqk
  */
-public class LogETLDirver {
-    private static final Logger logger = LoggerFactory.getLogger(LogETLDirver.class);
+public class LogETLDirverLzo {
+    private static final Logger logger = LoggerFactory.getLogger(LogETLDirverLzo.class);
     public static void main(String[] args) throws Exception{
         if(args.length!=2){
             System.err.print("请输入2个参数  input  output");
@@ -48,15 +43,16 @@ public class LogETLDirver {
         }
         logger.info("Processing trade with value: {}  ", ouput);
         Job job = Job.getInstance(configuration);
-        job.setJarByClass(LogETLDirver.class);
+        job.setJarByClass(LogETLDirverLzo.class);
         job.setMapperClass(LogETLMapper.class);
+        job.setInputFormatClass(LzoTextInputFormat.class);
         job.setOutputKeyClass(NullWritable.class);
         job.setOutputValueClass(Text.class);
         //MyInputFormat.setInputPaths(job,new Path(input));
-        FileInputFormat.setInputPaths(job,new Path(input));
+        LzoTextInputFormat.setInputPaths(job,new Path(input));
         FileOutputFormat.setOutputPath(job,new Path(ouput));
-        //FileOutputFormat.setCompressOutput(job, true);
-       // FileOutputFormat.setOutputCompressorClass(job, SnappyCodec.class);
+       // FileOutputFormat.setCompressOutput(job, true);
+      //  FileOutputFormat.setOutputCompressorClass(job, LzopCodec.class);
         job.waitForCompletion(true);
     }
 }

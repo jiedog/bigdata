@@ -40,7 +40,7 @@ public class LogUtils {
             e.printStackTrace();
         }
 
-        return result;
+        return log;
     }
 }
 
