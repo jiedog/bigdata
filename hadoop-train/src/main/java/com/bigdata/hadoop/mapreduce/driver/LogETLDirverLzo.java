@@ -2,7 +2,6 @@ package com.bigdata.hadoop.mapreduce.driver;
 
 
 import com.bigdata.hadoop.mapreduce.mapper.LogETLMapper;
-import com.hadoop.compression.lzo.LzopCodec;
 import com.hadoop.mapreduce.LzoTextInputFormat;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -10,6 +9,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +49,8 @@ public class LogETLDirverLzo {
         job.setOutputKeyClass(NullWritable.class);
         job.setOutputValueClass(Text.class);
         //MyInputFormat.setInputPaths(job,new Path(input));
-        LzoTextInputFormat.setInputPaths(job,new Path(input));
+        FileInputFormat.setInputPaths(job,new Path(input));
+       //FileInputFormat.setInputPaths(job,new Path(input));
         FileOutputFormat.setOutputPath(job,new Path(ouput));
        // FileOutputFormat.setCompressOutput(job, true);
       //  FileOutputFormat.setOutputCompressorClass(job, LzopCodec.class);

@@ -15,9 +15,9 @@ public class ReduceJoinMapper extends Mapper<LongWritable,Text,Text ,UserDept>  
 
 
     @Override
-    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+    protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
 
-        String[] info = value.toString().split("\t");
+        String[] info = value.toString().split(",");
         Integer flag ;
         String dataVlue= "" ;
         String dataKey="";
@@ -27,18 +27,14 @@ public class ReduceJoinMapper extends Mapper<LongWritable,Text,Text ,UserDept>  
             String userId = info[0];
             String username = info[1];
             String deptId = info[2];
+            userDept=new UserDept(flag,userId,username,deptId,"");
             dataKey = deptId;
-            userDept.setFlag(flag);
-            userDept.setUserId(userId);
-            userDept.setUsername(username);
-            userDept.setDeptId(deptId);
         }else if(info.length==2){
             flag =2;
             String deptId = info[0];
             String deptName = info[1];
             dataKey=deptId;
-            userDept.setFlag(flag);
-            userDept.setDeptName(deptName);
+            userDept=new UserDept(flag,"","",deptId,deptName);
         }
         context.write(new Text(dataKey), userDept);
 

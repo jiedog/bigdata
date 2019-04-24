@@ -98,10 +98,11 @@ public class LogData {
     }
 
     @Test
-    public void write() {
+    public void write() throws InterruptedException {
         FileWriter fw = null;
         StringBuilder stringBuilder = new StringBuilder("");
-        for (int i = 1; i < 1000000; i++) {
+        for (int i = 1; i < 100000000; i++) {
+
             stringBuilder.append(logData.createData()).append("\n");
         }
 
@@ -109,7 +110,7 @@ public class LogData {
 
         try {
             File f = new File("baidu.log");
-            fw = new FileWriter(f, true);
+            fw = new FileWriter(f, false);
 
         } catch (IOException e) {
             e.printStackTrace();

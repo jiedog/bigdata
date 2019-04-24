@@ -31,13 +31,6 @@ public class ReduceJoinDirver {
         String input = args[0];//hadoop-train/join/input
         String ouput = args[1];//hadoop-train/join/output/
         Configuration configuration =new Configuration();
-        //  int blockSize = 512; //args[0]为输入参数，表示用户希望设置的Split大小
-
-
-
-        //  configuration.setLong("mapred.max.split.size",512);
-        //  configuration.setLong("mapred.min.split.size",512);
-
         FileSystem fileSystem = FileSystem.get(configuration);
         Path outPutPath = new Path(ouput);
         // /hadoop-train/output/d=20190324 already exists
@@ -49,9 +42,8 @@ public class ReduceJoinDirver {
         Job job = Job.getInstance(configuration);
         job.setJarByClass(ReduceJoinDirver.class);
         job.setMapperClass(ReduceJoinMapper.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(UserDept.class);
-        //MyInputFormat.setInputPaths(job,new Path(input));
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(UserDept.class);
         FileInputFormat.setInputPaths(job,new Path(input));
         FileOutputFormat.setOutputPath(job,new Path(ouput));
         job.setReducerClass(ReduceJoinRuduce.class);
