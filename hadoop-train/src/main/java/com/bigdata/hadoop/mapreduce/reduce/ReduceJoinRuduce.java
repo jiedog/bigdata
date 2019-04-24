@@ -13,10 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author 种庆凯
- * @Date ${date} ${time}
- */
+
 public class ReduceJoinRuduce extends Reducer<Text,UserDept,NullWritable,UserDept> {
     private static final Logger logger = LoggerFactory.getLogger(ReduceJoinRuduce.class);
 

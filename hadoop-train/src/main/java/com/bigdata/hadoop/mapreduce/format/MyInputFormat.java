@@ -12,10 +12,7 @@ import org.apache.hadoop.mapreduce.lib.input.LineRecordReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-/**
- * @Author 种庆凯
- * @Date ${date} ${time}
- */
+
 public class MyInputFormat extends FileInputFormat<LongWritable,Text> {
     @Override
     public RecordReader<LongWritable, Text> createRecordReader(InputSplit inputSplit, TaskAttemptContext taskAttemptContext) throws IOException, InterruptedException {

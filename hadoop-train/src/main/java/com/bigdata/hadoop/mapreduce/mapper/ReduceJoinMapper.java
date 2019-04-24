@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
- */
 public class ReduceJoinMapper extends Mapper<LongWritable,Text,Text ,UserDept>  {
     private static final Logger logger = LoggerFactory.getLogger(ReduceJoinMapper.class);
 

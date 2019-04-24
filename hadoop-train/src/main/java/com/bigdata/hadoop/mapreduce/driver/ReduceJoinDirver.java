@@ -16,10 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
- * @Author 种庆凯
- * @Date ${date} ${time}
- */
+
 public class ReduceJoinDirver {
     private static final Logger logger = LoggerFactory.getLogger(ReduceJoinDirver.class);
 
