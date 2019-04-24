@@ -1,7 +1,6 @@
 package com.bigdata.hadoop.mapreduce.reduce;
 
 import com.bigdata.hadoop.mapreduce.model.UserDept;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -9,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
