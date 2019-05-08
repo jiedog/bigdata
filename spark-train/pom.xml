@@ -8,7 +8,7 @@
     <scala.version>2.11.8</scala.version>
     <scalikejdbc.version>3.3.2</scalikejdbc.version>
     <mysql.version>5.1.38</mysql.version>
-    <spark.version>2.2.0</spark.version>
+    <spark.version>2.4.2</spark.version>
   </properties>
 
 
@@ -44,19 +44,23 @@
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_2.11</artifactId>
-      <version>2.2.0</version>
+      <version>${spark.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-streaming_2.11</artifactId>
-      <version>2.2.0</version>
+      <version>${spark.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql_2.11</artifactId>
-      <version>2.2.0</version>
+      <version>${spark.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.41</version>
+    </dependency>
 
   </dependencies>
   <build>
