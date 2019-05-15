@@ -12,14 +12,12 @@ import java.util.Locale;
  *
  */
 public class DateUtil {
-    static DateFormat sourceFormat = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss z", Locale.ENGLISH);
-    static DateFormat targetFormat = new SimpleDateFormat("yyyyMMddHH");
+
     public static String parse(String timestr) throws Exception{
-
-            String time = timestr.substring(1,timestr.length()-1);
-            String reusult = targetFormat.format(sourceFormat.parse(time));
-
-
+        DateFormat sourceFormat = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss z", Locale.ENGLISH);
+        DateFormat targetFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String time = timestr.substring(1,timestr.length()-1);
+        String reusult = targetFormat.format(sourceFormat.parse(time));
         return reusult;
     }
 }
