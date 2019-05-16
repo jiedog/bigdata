@@ -13,11 +13,14 @@ object AccumulatorsApp {
     val sc= new SparkContext(sparkConf)
     val accm = sc.longAccumulator("myaccm")
     val data=sc.parallelize(Array(1,2,3,4,5))
-    data.map(x=>{
+    val a=data.map(x=>{
       accm.add(x)
       println(accm)
       x
-    }).collect()
+    })
+    a.foreach(println(_))
+    a.collect()
+      //.collect()
     println(accm.value)
 
 
