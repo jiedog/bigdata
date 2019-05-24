@@ -18,6 +18,7 @@ object AccumulatorsApp {
       println(accm)
       x
     })
+    a.cache()
     a.foreach(println(_))
     a.collect()
       //.collect()

@@ -28,7 +28,7 @@ object TopNApp {
 
     sc.parallelize(top2).coalesce(1)
           .map(x=>{x._1+"\t"+x._2})
-        .re
+        //.re
 
         .saveAsTextFile("spark-train/output/result/d=20190513")
 
